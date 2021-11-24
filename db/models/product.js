@@ -11,6 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      this.hasMany(models.Feature);
+      // This doesnt work cause they're from the same table
+      // I'm just going to not have the related_items have explict relations
+      // this.belongsToMany(this, {
+      //   through: models.RelatedItem
+      // })
     }
   };
   Product.init({
@@ -21,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     default_price: DataTypes.FLOAT
   }, {
     sequelize,
+    tableName: 'products',
     modelName: 'Product',
   });
   return Product;
