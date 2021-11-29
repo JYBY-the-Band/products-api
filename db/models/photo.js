@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Photo.init({
-    thumbnail_url: DataTypes.STRING,
-    photo_url: DataTypes.STRING
+    thumbnail_url: DataTypes.STRING(65535),
+    photo_url: DataTypes.STRING(65535)
   }, {
     sequelize,
     timestamps: false,
