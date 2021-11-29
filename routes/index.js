@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Product, Style, RelatedItem } = require('../db/models');
+const { Product, Feature, Style, RelatedItem, Photo, SKU } = require('../db/models');
 var express = require('express')
 var router = express.Router()
 
@@ -27,7 +27,8 @@ router.get('/:product_id', (req, res) => {
   Product.findAll({
     where: {
       id: req.params.product_id
-    }
+    },
+    include: Feature
   })
     .then(data => {
       res.send(data).status(200);
@@ -43,7 +44,8 @@ router.get('/:product_id/styles', (req, res) => {
   Style.findAll({
     where: {
       ProductId: req.params.product_id
-    }
+    },
+    include: [Photo, SKU]
   })
     .then(data => {
       res.send(data).status(200);
