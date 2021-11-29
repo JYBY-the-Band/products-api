@@ -1,2 +1,3 @@
-const db = require('./db/index.js');
+const { sequelize } = require('./db/models');
 
+sequelize.sync({ force: true });

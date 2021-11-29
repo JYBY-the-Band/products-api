@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.hasMany(models.Feature);
+      this.hasMany(models.Style);
       // This doesnt work cause they're from the same table
       // I'm just going to not have the related_items have explict relations
       // this.belongsToMany(this, {
@@ -21,12 +22,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   Product.init({
     name: DataTypes.STRING,
-    category: DataTypes.STRING,
-    slogan: DataTypes.STRING,
-    description: DataTypes.STRING,
+    category: DataTypes.STRING(65535),
+    slogan: DataTypes.STRING(65535),
+    description: DataTypes.STRING(65535),
     default_price: DataTypes.FLOAT
   }, {
     sequelize,
+    timestamps: false,
     tableName: 'products',
     modelName: 'Product',
   });
