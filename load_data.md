@@ -17,3 +17,10 @@
 
 ## SKUs
 \copy skus(id, "StyleId", size, quantity) FROM '/home/batman/dev/products-api/data/skus.csv' DELIMITER ',' CSV HEADER;
+
+## Indexing
+CREATE INDEX style_product_id_index ON styles ("ProductId");
+CREATE INDEX sku_style_id_index ON skus ("StyleId");
+CREATE INDEX photo_style_id_index ON photos ("StyleId");
+CREATE INDEX feature_product_id_index ON features ("ProductId");
+CREATE INDEX current_product_id_index ON related_items (current_product_id);
