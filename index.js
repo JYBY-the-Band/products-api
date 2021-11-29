@@ -1,8 +1,10 @@
 const { sequelize } = require('./db/models');
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 const port = 3000;
 app.use(express.json());
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 const routes = require('./routes');
 
