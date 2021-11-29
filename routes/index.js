@@ -23,12 +23,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:product_id', (req, res) => {
-  // TODO: also get features
   Product.findAll({
     where: {
       id: req.params.product_id
     },
-    include: Feature
+    include: {
+      model: Feature,
+      attributes: ['feature', 'value']
+    }
   })
     .then(data => {
       res.send(data).status(200);
@@ -40,12 +42,19 @@ router.get('/:product_id', (req, res) => {
 });
 
 router.get('/:product_id/styles', (req, res) => {
-  // TODO: also get photos and skus
   Style.findAll({
     where: {
       ProductId: req.params.product_id
     },
-    include: [Photo, SKU]
+    include: [{
+      model: Photo,
+      attributes: ['photo_url', 'thumbnail_url'],
+      separate: true,
+    },{
+      model: SKU,
+      attributes: ['quantity', 'size'],
+      separate: true,
+    }]
   })
     .then(data => {
       res.send(data).status(200);
