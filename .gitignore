@@ -4,4 +4,5 @@ node_modules/*
 data/
 
 newrelic_agent.log
+newrelic.js
 testing/test.sh
