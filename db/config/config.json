@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "P@ssw0rd",
+    "username": "ubuntu",
+    "password": "ubuntu",
     "database": "products",
-    "host": "127.0.0.1",
+    "host": "54.85.86.167",
     "dialect": "postgres",
-    "logging": false
+    "logging": true
   },
   "test": {
     "username": "root",
